@@ -12,7 +12,7 @@ export const CLOSE_THRESHOLD = 0.25
 
 export const SCROLL_LOCK_TIMEOUT = 100
 
-export const BORDER_RADIUS = 8
+export const BORDER_RADIUS = 100
 
 export const NESTED_DISPLACEMENT = 16
 
@@ -317,6 +317,7 @@ export function useDrawer(props: UseDrawerProps & DialogEmitHandlers): DrawerRoo
       set(overlayRef.value?.$el, {
         transition: 'none',
       })
+      console.log('gogo')
 
       if (snapPoints.value)
         onDragSnapPoints({ draggedDistance })
@@ -491,14 +492,14 @@ export function useDrawer(props: UseDrawerProps & DialogEmitHandlers): DrawerRoo
     const distMoved = pointerStart.value - (isVertical(direction.value) ? event.clientY : event.clientX)
     const velocity = Math.abs(distMoved) / timeTaken
 
-    if (velocity > 0.05) {
-      // `justReleased` is needed to prevent the drawer from focusing on an input when the drag ends, as it's not the intent most of the time.
-      justReleased.value = true
+    // if (velocity > 0.05) {
+    //   // `justReleased` is needed to prevent the drawer from focusing on an input when the drag ends, as it's not the intent most of the time.
+    //   justReleased.value = true
 
-      window.setTimeout(() => {
-        justReleased.value = false
-      }, 200)
-    }
+    //   window.setTimeout(() => {
+    //     justReleased.value = false
+    //   }, 200)
+    // }
 
     if (snapPoints.value) {
       const directionMultiplier = direction.value === 'bottom' || direction.value === 'right' ? 1 : -1
